@@ -25,16 +25,3 @@ extension UnsafeMutableRawPointer {
         }
     }
 }
-
-struct ExistentialContainer {
-    struct Buffer {
-        let buffer1, buffer2, buffer3: Int
-        
-        static func size() -> Int {
-            return MemoryLayout<Buffer>.size
-        }
-    }
-    let buffer: Buffer
-    let type: Any.Type
-    let witnessTable: Int
-}

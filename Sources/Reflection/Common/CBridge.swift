@@ -11,4 +11,4 @@ func swift_allocObject(
     _ type: UnsafeRawPointer?,
     _ requiredSize: Int32,
     _ requiredAlignmentMask: Int32
-) -> UnsafeRawPointer?
+) -> UnsafeMutableRawPointer?

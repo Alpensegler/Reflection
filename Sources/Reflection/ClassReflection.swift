@@ -41,7 +41,7 @@ public struct ClassReflection: ReflectionType {
     }
     
     func instance(
-        alloc: (UnsafeRawPointer?, Int32, Int32) -> UnsafeRawPointer?,
+        alloc: (UnsafeRawPointer?, Int32, Int32) -> UnsafeMutableRawPointer?,
         propertySetter setter: (Property) throws -> Any? = { _ in nil }
     ) throws -> Any {
         let typePointer = unsafeBitCast(type, to: UnsafeRawPointer.self)
@@ -49,9 +49,8 @@ public struct ClassReflection: ReflectionType {
         let instanceSize = Int32(metadata.pointee.instanceSize)
         let alignmentMask = Int32(metadata.pointee.instanceAlignmentMask)
         guard let pointer = alloc(typePointer, instanceSize, alignmentMask) else {
-            throw ReflectionError.createClassIntanceFailure(type: type)
+            throw ReflectionError.unsupportedInstance(type: type)
         }
-        let pointer = UnsafeMutableRawPointer(mutating: pointer)
         for property in properties {
             let value = try setter(property) ?? property.instance(propertySetter: setter)
             ProtocolTypeContainer.set(type: property.type, value: value, to: pointer.advanced(by: property.offset), initialize: true)

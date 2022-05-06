@@ -1,35 +1,18 @@
-protocol RelativeDirectPointerType {
-    associatedtype Pointee
-    var offset: Int32 { get set }
-}
-
-extension RelativeDirectPointerType {
-    mutating func get() -> UnsafeMutablePointer<Pointee> {
-        withUnsafePointer(to: &self) { [offset = self.offset] p in
-            UnsafeMutablePointer(mutating: UnsafeRawPointer(p)
-                .advanced(by: numericCast(offset))
-                .assumingMemoryBound(to: Pointee.self)
-            )
-        }
-    }
-}
-
 @propertyWrapper
-struct RelativeDirectPointer<Pointee>: RelativeDirectPointerType {
+struct RelativeDirectPointer<Pointee> {
     var offset: Int32
     
     var wrappedValue: Pointee {
-        mutating get { get().pointee }
-        _modify { yield &get().pointee }
+        mutating get { UnsafeMutablePointer(offset: &offset).pointee }
+        _modify { yield &UnsafeMutablePointer(offset: &offset).pointee }
     }
 }
 
 @propertyWrapper
-struct CCharRelativeDirectPointer: RelativeDirectPointerType {
-    typealias Pointee = CChar
+struct CCharRelativeDirectPointer {
     var offset: Int32
     
     var wrappedValue: String {
-        mutating get { String(cString: get()) }
+        mutating get { String(cString: UnsafeMutablePointer<CChar>(offset: &offset)) }
     }
 }

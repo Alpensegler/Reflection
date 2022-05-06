@@ -23,7 +23,7 @@
 /* Begin PBXBuildFile section */
 		F30065CB2823C6770041FEBF /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065CA2823C6770041FEBF /* Error.swift */; };
 		F30065CD2823D86C0041FEBF /* ProtocolTypeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065CC2823D86C0041FEBF /* ProtocolTypeContainer.swift */; };
-		F30065CF2823E4F70041FEBF /* Pointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065CE2823E4F70041FEBF /* Pointer.swift */; };
+		F30065CF2823E4F70041FEBF /* UnsafeMutableRawPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065CE2823E4F70041FEBF /* UnsafeMutableRawPointer.swift */; };
 		F30065D128246A3C0041FEBF /* ClassMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065D028246A3C0041FEBF /* ClassMetadata.swift */; };
 		F30065D328246E2B0041FEBF /* ClassReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065D228246E2B0041FEBF /* ClassReflection.swift */; };
 		F30065D6282475800041FEBF /* ClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065D4282474D60041FEBF /* ClassTests.swift */; };
@@ -34,9 +34,13 @@
 		F3E0428728227E9500490978 /* Kind.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0428628227E9500490978 /* Kind.swift */; };
 		F3E042892822835E00490978 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E042882822835E00490978 /* Metadata.swift */; };
 		F3E0428D282284CC00490978 /* StructMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0428C282284CC00490978 /* StructMetadata.swift */; };
-		F3E0428F2822883E00490978 /* FieldDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0428E2822883E00490978 /* FieldDescriptor.swift */; };
 		F3E04291282291E200490978 /* RelativeDirectPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E04290282291E200490978 /* RelativeDirectPointer.swift */; };
 		F3E04293282294E500490978 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E04292282294E500490978 /* Vector.swift */; };
+		F3F2382328252E4F001E30D6 /* EnumMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F2382228252E4F001E30D6 /* EnumMetadata.swift */; };
+		F3F2382528252F98001E30D6 /* EnumReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F2382428252F98001E30D6 /* EnumReflection.swift */; };
+		F3F23827282535B7001E30D6 /* EnumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F23826282535B7001E30D6 /* EnumTests.swift */; };
+		F3F2382B28255A30001E30D6 /* UnsafeMutablePointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F2382928255A08001E30D6 /* UnsafeMutablePointer.swift */; };
+		F3F2382E28258EF2001E30D6 /* Layouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F2382C28258EE4001E30D6 /* Layouts.swift */; };
 		OBJ_22 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Reflection.swift */; };
 		OBJ_29 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_40 /* StructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* StructTests.swift */; };
@@ -63,7 +67,7 @@
 /* Begin PBXFileReference section */
 		F30065CA2823C6770041FEBF /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		F30065CC2823D86C0041FEBF /* ProtocolTypeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolTypeContainer.swift; sourceTree = "<group>"; };
-		F30065CE2823E4F70041FEBF /* Pointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pointer.swift; sourceTree = "<group>"; };
+		F30065CE2823E4F70041FEBF /* UnsafeMutableRawPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeMutableRawPointer.swift; sourceTree = "<group>"; };
 		F30065D028246A3C0041FEBF /* ClassMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassMetadata.swift; sourceTree = "<group>"; };
 		F30065D228246E2B0041FEBF /* ClassReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassReflection.swift; sourceTree = "<group>"; };
 		F30065D4282474D60041FEBF /* ClassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTests.swift; sourceTree = "<group>"; };
@@ -74,9 +78,13 @@
 		F3E0428628227E9500490978 /* Kind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kind.swift; sourceTree = "<group>"; };
 		F3E042882822835E00490978 /* Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		F3E0428C282284CC00490978 /* StructMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructMetadata.swift; sourceTree = "<group>"; };
-		F3E0428E2822883E00490978 /* FieldDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldDescriptor.swift; sourceTree = "<group>"; };
 		F3E04290282291E200490978 /* RelativeDirectPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeDirectPointer.swift; sourceTree = "<group>"; };
 		F3E04292282294E500490978 /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		F3F2382228252E4F001E30D6 /* EnumMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumMetadata.swift; sourceTree = "<group>"; };
+		F3F2382428252F98001E30D6 /* EnumReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumReflection.swift; sourceTree = "<group>"; };
+		F3F23826282535B7001E30D6 /* EnumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumTests.swift; sourceTree = "<group>"; };
+		F3F2382928255A08001E30D6 /* UnsafeMutablePointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeMutablePointer.swift; sourceTree = "<group>"; };
+		F3F2382C28258EE4001E30D6 /* Layouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layouts.swift; sourceTree = "<group>"; };
 		OBJ_12 /* StructTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructTests.swift; sourceTree = "<group>"; };
 		OBJ_16 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -109,7 +117,6 @@
 			children = (
 				F305D4E0282179F60050B8C9 /* DefaultInitializable.swift */,
 				F305D4E228217C650050B8C9 /* CBridge.swift */,
-				F30065CE2823E4F70041FEBF /* Pointer.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -120,6 +127,7 @@
 				F3E042882822835E00490978 /* Metadata.swift */,
 				F3E0428C282284CC00490978 /* StructMetadata.swift */,
 				F30065D028246A3C0041FEBF /* ClassMetadata.swift */,
+				F3F2382228252E4F001E30D6 /* EnumMetadata.swift */,
 			);
 			path = Metadata;
 			sourceTree = "<group>";
@@ -129,13 +137,22 @@
 			children = (
 				F3E04292282294E500490978 /* Vector.swift */,
 				F3E04290282291E200490978 /* RelativeDirectPointer.swift */,
-				F3E0428E2822883E00490978 /* FieldDescriptor.swift */,
 				F30065CC2823D86C0041FEBF /* ProtocolTypeContainer.swift */,
 				F3E0428428227DEB00490978 /* Property.swift */,
 				F3E0428628227E9500490978 /* Kind.swift */,
 				F30065CA2823C6770041FEBF /* Error.swift */,
+				F3F2382C28258EE4001E30D6 /* Layouts.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F3F23828282559CD001E30D6 /* PointerExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				F30065CE2823E4F70041FEBF /* UnsafeMutableRawPointer.swift */,
+				F3F2382928255A08001E30D6 /* UnsafeMutablePointer.swift */,
+			);
+			path = PointerExtensions;
 			sourceTree = "<group>";
 		};
 		OBJ_10 /* Tests */ = {
@@ -151,6 +168,7 @@
 			children = (
 				OBJ_12 /* StructTests.swift */,
 				F30065D4282474D60041FEBF /* ClassTests.swift */,
+				F3F23826282535B7001E30D6 /* EnumTests.swift */,
 			);
 			name = ReflectionTests;
 			path = Tests/ReflectionTests;
@@ -187,12 +205,14 @@
 		OBJ_8 /* Reflection */ = {
 			isa = PBXGroup;
 			children = (
+				F3F23828282559CD001E30D6 /* PointerExtensions */,
 				F34CB23128227D6A00DA5B18 /* Models */,
 				F34CB22D2822735F00DA5B18 /* Metadata */,
 				F305D4DF282179DD0050B8C9 /* Common */,
 				OBJ_9 /* Reflection.swift */,
 				F34CB22E28227C6400DA5B18 /* StructReflection.swift */,
 				F30065D228246E2B0041FEBF /* ClassReflection.swift */,
+				F3F2382428252F98001E30D6 /* EnumReflection.swift */,
 			);
 			name = Reflection;
 			path = Sources/Reflection;
@@ -283,21 +303,24 @@
 			buildActionMask = 0;
 			files = (
 				F30065D128246A3C0041FEBF /* ClassMetadata.swift in Sources */,
+				F3F2382528252F98001E30D6 /* EnumReflection.swift in Sources */,
 				F30065D328246E2B0041FEBF /* ClassReflection.swift in Sources */,
 				F3E0428528227DEB00490978 /* Property.swift in Sources */,
 				F3E04293282294E500490978 /* Vector.swift in Sources */,
 				OBJ_22 /* Reflection.swift in Sources */,
-				F3E0428F2822883E00490978 /* FieldDescriptor.swift in Sources */,
 				F30065CB2823C6770041FEBF /* Error.swift in Sources */,
 				F305D4E1282179F60050B8C9 /* DefaultInitializable.swift in Sources */,
 				F3E04291282291E200490978 /* RelativeDirectPointer.swift in Sources */,
+				F3F2382328252E4F001E30D6 /* EnumMetadata.swift in Sources */,
 				F34CB22F28227C6400DA5B18 /* StructReflection.swift in Sources */,
+				F3F2382B28255A30001E30D6 /* UnsafeMutablePointer.swift in Sources */,
 				F30065CD2823D86C0041FEBF /* ProtocolTypeContainer.swift in Sources */,
 				F305D4E328217C650050B8C9 /* CBridge.swift in Sources */,
 				F3E0428D282284CC00490978 /* StructMetadata.swift in Sources */,
 				F3E042892822835E00490978 /* Metadata.swift in Sources */,
+				F3F2382E28258EF2001E30D6 /* Layouts.swift in Sources */,
 				F3E0428728227E9500490978 /* Kind.swift in Sources */,
-				F30065CF2823E4F70041FEBF /* Pointer.swift in Sources */,
+				F30065CF2823E4F70041FEBF /* UnsafeMutableRawPointer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +337,7 @@
 			buildActionMask = 0;
 			files = (
 				F30065D6282475800041FEBF /* ClassTests.swift in Sources */,
+				F3F23827282535B7001E30D6 /* EnumTests.swift in Sources */,
 				OBJ_40 /* StructTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
