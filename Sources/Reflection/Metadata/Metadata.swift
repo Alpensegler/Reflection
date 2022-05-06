@@ -9,7 +9,7 @@ protocol TypeDescriptor {
     var mangledName: String { mutating get }
     var fieldDescriptor: FieldDescriptor { mutating get set }
     var numberOfFields: Int32 { get }
-    var offsetToTheFieldOffsetVector: OffsetType { get }
+    var offsetToTheFieldOffsetVector: Int32 { get }
     var genericContextHeader: TargetTypeGenericContextDescriptorHeader { get }
 }
 

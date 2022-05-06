@@ -24,6 +24,9 @@
 		F30065CB2823C6770041FEBF /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065CA2823C6770041FEBF /* Error.swift */; };
 		F30065CD2823D86C0041FEBF /* ProtocolTypeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065CC2823D86C0041FEBF /* ProtocolTypeContainer.swift */; };
 		F30065CF2823E4F70041FEBF /* Pointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065CE2823E4F70041FEBF /* Pointer.swift */; };
+		F30065D128246A3C0041FEBF /* ClassMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065D028246A3C0041FEBF /* ClassMetadata.swift */; };
+		F30065D328246E2B0041FEBF /* ClassReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065D228246E2B0041FEBF /* ClassReflection.swift */; };
+		F30065D6282475800041FEBF /* ClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065D4282474D60041FEBF /* ClassTests.swift */; };
 		F305D4E1282179F60050B8C9 /* DefaultInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305D4E0282179F60050B8C9 /* DefaultInitializable.swift */; };
 		F305D4E328217C650050B8C9 /* CBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305D4E228217C650050B8C9 /* CBridge.swift */; };
 		F34CB22F28227C6400DA5B18 /* StructReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34CB22E28227C6400DA5B18 /* StructReflection.swift */; };
@@ -36,7 +39,7 @@
 		F3E04293282294E500490978 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E04292282294E500490978 /* Vector.swift */; };
 		OBJ_22 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Reflection.swift */; };
 		OBJ_29 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_40 /* ReflectionStructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* ReflectionStructTests.swift */; };
+		OBJ_40 /* StructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* StructTests.swift */; };
 		OBJ_42 /* Reflection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "reflection::Reflection::Product" /* Reflection.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,9 @@
 		F30065CA2823C6770041FEBF /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		F30065CC2823D86C0041FEBF /* ProtocolTypeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolTypeContainer.swift; sourceTree = "<group>"; };
 		F30065CE2823E4F70041FEBF /* Pointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pointer.swift; sourceTree = "<group>"; };
+		F30065D028246A3C0041FEBF /* ClassMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassMetadata.swift; sourceTree = "<group>"; };
+		F30065D228246E2B0041FEBF /* ClassReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassReflection.swift; sourceTree = "<group>"; };
+		F30065D4282474D60041FEBF /* ClassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTests.swift; sourceTree = "<group>"; };
 		F305D4E0282179F60050B8C9 /* DefaultInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInitializable.swift; sourceTree = "<group>"; };
 		F305D4E228217C650050B8C9 /* CBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBridge.swift; sourceTree = "<group>"; };
 		F34CB22E28227C6400DA5B18 /* StructReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructReflection.swift; sourceTree = "<group>"; };
@@ -71,7 +77,7 @@
 		F3E0428E2822883E00490978 /* FieldDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldDescriptor.swift; sourceTree = "<group>"; };
 		F3E04290282291E200490978 /* RelativeDirectPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeDirectPointer.swift; sourceTree = "<group>"; };
 		F3E04292282294E500490978 /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
-		OBJ_12 /* ReflectionStructTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionStructTests.swift; sourceTree = "<group>"; };
+		OBJ_12 /* StructTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructTests.swift; sourceTree = "<group>"; };
 		OBJ_16 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* Reflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
@@ -113,6 +119,7 @@
 			children = (
 				F3E042882822835E00490978 /* Metadata.swift */,
 				F3E0428C282284CC00490978 /* StructMetadata.swift */,
+				F30065D028246A3C0041FEBF /* ClassMetadata.swift */,
 			);
 			path = Metadata;
 			sourceTree = "<group>";
@@ -142,7 +149,8 @@
 		OBJ_11 /* ReflectionTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_12 /* ReflectionStructTests.swift */,
+				OBJ_12 /* StructTests.swift */,
+				F30065D4282474D60041FEBF /* ClassTests.swift */,
 			);
 			name = ReflectionTests;
 			path = Tests/ReflectionTests;
@@ -184,6 +192,7 @@
 				F305D4DF282179DD0050B8C9 /* Common */,
 				OBJ_9 /* Reflection.swift */,
 				F34CB22E28227C6400DA5B18 /* StructReflection.swift */,
+				F30065D228246E2B0041FEBF /* ClassReflection.swift */,
 			);
 			name = Reflection;
 			path = Sources/Reflection;
@@ -273,6 +282,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				F30065D128246A3C0041FEBF /* ClassMetadata.swift in Sources */,
+				F30065D328246E2B0041FEBF /* ClassReflection.swift in Sources */,
 				F3E0428528227DEB00490978 /* Property.swift in Sources */,
 				F3E04293282294E500490978 /* Vector.swift in Sources */,
 				OBJ_22 /* Reflection.swift in Sources */,
@@ -302,7 +313,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_40 /* ReflectionStructTests.swift in Sources */,
+				F30065D6282475800041FEBF /* ClassTests.swift in Sources */,
+				OBJ_40 /* StructTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

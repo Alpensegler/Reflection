@@ -12,6 +12,6 @@ struct StructMetadata: NominalMetadata {
         let genericContextHeader: TargetTypeGenericContextDescriptorHeader
     }
     
-    var kind: Int
+    let kind: Int
     var typeDescriptor: UnsafeMutablePointer<Descriptor>
 }

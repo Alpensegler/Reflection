@@ -1,27 +1,45 @@
 import XCTest
 @testable import Reflection
 
-struct Cat {
+fileprivate class Cat {
     let name: String, age: Int
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
 }
 
-struct Dog {
+fileprivate class Dog {
     let name: String, age: Int
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
 }
 
-struct Person {
+fileprivate class Person {
     let name: String, age: Int, pet: Cat
+    init(name: String, age: Int, pet: Cat) {
+        self.name = name
+        self.age = age
+        self.pet = pet
+    }
 }
 
-struct GenericPerson<Pet, Pet2> {
+fileprivate class GenericPerson<Pet, Pet2> {
     let name: String, age: Int
     let pet1: Pet, pet2: Pet2
+    init(name: String, age: Int, pet1: Pet, pet2: Pet2) {
+        self.name = name
+        self.age = age
+        self.pet1 = pet1
+        self.pet2 = pet2
+    }
 }
 
-final class ReflectionStructTests: XCTestCase {
-    
+final class ClassTests: XCTestCase {
     func testReflectPerson() throws {
-        guard case let .struct(reflection) = try Reflection(reflecting: Person.self) else {
+        guard case let .class(reflection) = try Reflection(reflecting: Person.self) else {
             return XCTAssert(false)
         }
         XCTAssert(reflection.size == MemoryLayout<Person>.size)
@@ -35,7 +53,7 @@ final class ReflectionStructTests: XCTestCase {
     
     func testReflectGenericPerson() throws {
         typealias Person = GenericPerson<Cat, Dog>
-        guard case let .struct(reflection) = try Reflection(reflecting: Person.self) else {
+        guard case let .class(reflection) = try Reflection(reflecting: Person.self) else {
             return XCTAssert(false)
         }
         XCTAssert(reflection.size == MemoryLayout<Person>.size)
@@ -47,8 +65,8 @@ final class ReflectionStructTests: XCTestCase {
         XCTAssert(reflection.genericTypes[1] == Dog.self)
     }
     
-    func testReflectStructProperties() throws {
-        let reflection = try StructReflection(reflecting: Person.self)
+    func testReflectClassProperties() throws {
+        let reflection = try ClassReflection(reflecting: Person.self)
         var person = Person(name: "Frain", age: 27, pet: Cat(name: "Momo", age: 3))
         let name = try reflection.properties[0].get(from: person) as? String
         let age = try reflection.properties[1].get(from: person) as? Int
@@ -61,7 +79,7 @@ final class ReflectionStructTests: XCTestCase {
     }
     
     func testRelfectionInstance() throws {
-        let reflection = try StructReflection(reflecting: Person.self)
+        let reflection = try ClassReflection(reflecting: Person.self)
         guard let person1 = try reflection.instance() as? Person else {
             return XCTAssert(false)
         }
