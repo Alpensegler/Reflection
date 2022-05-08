@@ -41,6 +41,9 @@
 		F3F23827282535B7001E30D6 /* EnumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F23826282535B7001E30D6 /* EnumTests.swift */; };
 		F3F2382B28255A30001E30D6 /* UnsafeMutablePointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F2382928255A08001E30D6 /* UnsafeMutablePointer.swift */; };
 		F3F2382E28258EF2001E30D6 /* Layouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F2382C28258EE4001E30D6 /* Layouts.swift */; };
+		F3F238332825A8AA001E30D6 /* FunctionMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F238322825A8AA001E30D6 /* FunctionMetadata.swift */; };
+		F3F238352825A8C2001E30D6 /* FunctionReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F238342825A8C2001E30D6 /* FunctionReflection.swift */; };
+		F3F238372825C0A1001E30D6 /* FunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F238362825C0A1001E30D6 /* FunctionTests.swift */; };
 		OBJ_22 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Reflection.swift */; };
 		OBJ_29 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_40 /* StructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* StructTests.swift */; };
@@ -85,6 +88,9 @@
 		F3F23826282535B7001E30D6 /* EnumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumTests.swift; sourceTree = "<group>"; };
 		F3F2382928255A08001E30D6 /* UnsafeMutablePointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeMutablePointer.swift; sourceTree = "<group>"; };
 		F3F2382C28258EE4001E30D6 /* Layouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layouts.swift; sourceTree = "<group>"; };
+		F3F238322825A8AA001E30D6 /* FunctionMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionMetadata.swift; sourceTree = "<group>"; };
+		F3F238342825A8C2001E30D6 /* FunctionReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionReflection.swift; sourceTree = "<group>"; };
+		F3F238362825C0A1001E30D6 /* FunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTests.swift; sourceTree = "<group>"; };
 		OBJ_12 /* StructTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructTests.swift; sourceTree = "<group>"; };
 		OBJ_16 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 				F3E0428C282284CC00490978 /* StructMetadata.swift */,
 				F30065D028246A3C0041FEBF /* ClassMetadata.swift */,
 				F3F2382228252E4F001E30D6 /* EnumMetadata.swift */,
+				F3F238322825A8AA001E30D6 /* FunctionMetadata.swift */,
 			);
 			path = Metadata;
 			sourceTree = "<group>";
@@ -169,6 +176,7 @@
 				OBJ_12 /* StructTests.swift */,
 				F30065D4282474D60041FEBF /* ClassTests.swift */,
 				F3F23826282535B7001E30D6 /* EnumTests.swift */,
+				F3F238362825C0A1001E30D6 /* FunctionTests.swift */,
 			);
 			name = ReflectionTests;
 			path = Tests/ReflectionTests;
@@ -213,6 +221,7 @@
 				F34CB22E28227C6400DA5B18 /* StructReflection.swift */,
 				F30065D228246E2B0041FEBF /* ClassReflection.swift */,
 				F3F2382428252F98001E30D6 /* EnumReflection.swift */,
+				F3F238342825A8C2001E30D6 /* FunctionReflection.swift */,
 			);
 			name = Reflection;
 			path = Sources/Reflection;
@@ -306,6 +315,8 @@
 				F3F2382528252F98001E30D6 /* EnumReflection.swift in Sources */,
 				F30065D328246E2B0041FEBF /* ClassReflection.swift in Sources */,
 				F3E0428528227DEB00490978 /* Property.swift in Sources */,
+				F3F238332825A8AA001E30D6 /* FunctionMetadata.swift in Sources */,
+				F3F238352825A8C2001E30D6 /* FunctionReflection.swift in Sources */,
 				F3E04293282294E500490978 /* Vector.swift in Sources */,
 				OBJ_22 /* Reflection.swift in Sources */,
 				F30065CB2823C6770041FEBF /* Error.swift in Sources */,
@@ -339,6 +350,7 @@
 				F30065D6282475800041FEBF /* ClassTests.swift in Sources */,
 				F3F23827282535B7001E30D6 /* EnumTests.swift in Sources */,
 				OBJ_40 /* StructTests.swift in Sources */,
+				F3F238372825C0A1001E30D6 /* FunctionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

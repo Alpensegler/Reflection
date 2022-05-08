@@ -10,6 +10,7 @@ public enum Reflection: ReflectionType {
     case `struct`(StructReflection)
     case `class`(ClassReflection)
     case `enum`(EnumReflection)
+    case function(FunctionReflection)
 }
 
 public extension Reflection {
@@ -18,6 +19,7 @@ public extension Reflection {
         case .struct(let reflection): return reflection.type
         case .class(let reflection): return reflection.type
         case .enum(let reflection): return reflection.type
+        case .function(let reflection): return reflection.type
         }
     }
     
@@ -27,6 +29,7 @@ public extension Reflection {
         case .struct(let reflection): return reflection.size
         case .class(let reflection): return reflection.size
         case .enum(let reflection): return reflection.size
+        case .function(let reflection): return reflection.size
         }
     }
     
@@ -35,6 +38,7 @@ public extension Reflection {
         case .struct(let reflection): return reflection.alignment
         case .class(let reflection): return reflection.alignment
         case .enum(let reflection): return reflection.alignment
+        case .function(let reflection): return reflection.alignment
         }
     }
     
@@ -43,6 +47,7 @@ public extension Reflection {
         case .struct(let reflection): return reflection.stride
         case .class(let reflection): return reflection.stride
         case .enum(let reflection): return reflection.stride
+        case .function(let reflection): return reflection.stride
         }
     }
     
@@ -51,6 +56,7 @@ public extension Reflection {
         case .struct: self = .struct(StructReflection(type))
         case .class: self = .class(try ClassReflection(type))
         case .enum: self = .enum(EnumReflection(type))
+        case .function: self = .function(FunctionReflection(type))
         default: throw ReflectionError.unsupportedRefelction(type: type, reflection: Reflection.self)
         }
     }
