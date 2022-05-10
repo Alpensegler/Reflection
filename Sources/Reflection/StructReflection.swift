@@ -1,4 +1,4 @@
-public struct StructReflection: ReflectionType {
+public struct StructReflection: PropertyContainerReflectionType {
     public let type: Any.Type
     public let mangledName: String
     public let size: Int
@@ -26,17 +26,5 @@ public extension StructReflection {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: StructReflection.self)
         }
         self.init(type)
-    }
-    
-    func instance(
-        propertySetter setter: (Property) throws -> Any? = { _ in nil }
-    ) throws -> Any {
-        let pointer = UnsafeMutableRawPointer.allocate(byteCount: size, alignment: alignment)
-        defer { pointer.deallocate() }
-        for property in properties {
-            let value = try setter(property) ?? property.instance(propertySetter: setter)
-            ProtocolTypeContainer.set(type: property.type, value: value, to: pointer.advanced(by: property.offset), initialize: true)
-        }
-        return ProtocolTypeContainer.get(type: type, from: pointer)
     }
 }

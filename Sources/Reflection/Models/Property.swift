@@ -5,13 +5,12 @@ public struct Property {
     public let isVar: Bool
     public let offset: Int
     
-    func instance(propertySetter setter: (Property) throws -> Any?) throws -> Any {
+    func instance(_ propertyValue: (Property) throws -> Any?) throws -> Any {
         if let defaultInitializable = type as? DefaultInitializable.Type {
             return defaultInitializable.init()
         }
-        return try Reflection(reflecting: type).instance(propertySetter: setter)
+        return try Reflection(reflecting: type).instance(propertyValue)
     }
-    
 }
 
 public extension Property {

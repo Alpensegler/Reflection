@@ -1,7 +1,7 @@
 extension UnsafeMutableRawPointer {
     init<Value>(pointer: UnsafePointer<Value>) throws {
         switch Kind(type: Value.self) {
-        case .struct:
+        case .struct, .tuple:
             self.init(mutating: UnsafeRawPointer(pointer))
         case .class:
             self = pointer.withMemoryRebound(to: UnsafeMutableRawPointer.self, capacity: 1) {
@@ -15,7 +15,7 @@ extension UnsafeMutableRawPointer {
                     return UnsafeMutableRawPointer(UnsafeMutablePointer(mutating: $0))
                 }
                 return $0.withMemoryRebound(to: UnsafeMutableRawPointer.self, capacity: 1) {
-                    guard kind == .struct else { return $0.pointee }
+                    guard kind == .struct || kind == .tuple else { return $0.pointee }
                     let existentialHeaderSize = MemoryLayout<Int>.size == 8 ? 16 : 8
                     return $0.pointee.advanced(by: existentialHeaderSize)
                 }

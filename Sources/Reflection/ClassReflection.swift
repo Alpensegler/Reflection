@@ -1,4 +1,4 @@
-public struct ClassReflection: ReflectionType {
+public struct ClassReflection: PropertyContainerReflectionType {
     class Temp {}
     static let swiftObject = UnsafeMutablePointer<ClassMetadata>(type: Temp.self)
         .pointee
@@ -42,7 +42,7 @@ public struct ClassReflection: ReflectionType {
     
     func instance(
         alloc: (UnsafeRawPointer?, Int32, Int32) -> UnsafeMutableRawPointer?,
-        propertySetter setter: (Property) throws -> Any? = { _ in nil }
+        propertyValue: (Property) throws -> Any? = { _ in nil }
     ) throws -> Any {
         let typePointer = unsafeBitCast(type, to: UnsafeRawPointer.self)
         let metadata = UnsafeMutablePointer<ClassMetadata>(type: type)
@@ -51,10 +51,7 @@ public struct ClassReflection: ReflectionType {
         guard let pointer = alloc(typePointer, instanceSize, alignmentMask) else {
             throw ReflectionError.unsupportedInstance(type: type)
         }
-        for property in properties {
-            let value = try setter(property) ?? property.instance(propertySetter: setter)
-            ProtocolTypeContainer.set(type: property.type, value: value, to: pointer.advanced(by: property.offset), initialize: true)
-        }
+        try setPropertyValue(pointer: pointer, propertyValue)
         return unsafeBitCast(pointer, to: AnyObject.self)
     }
 }
@@ -67,9 +64,7 @@ public extension ClassReflection {
         try self.init(type)
     }
     
-    func instance(
-        propertySetter setter: (Property) throws -> Any? = { _ in nil }
-    ) throws -> Any {
-        try instance(alloc: swift_allocObject, propertySetter: setter)
+    func instance(_ propertyValue: (Property) throws -> Any? = { _ in nil }) throws -> Any {
+        try instance(alloc: swift_allocObject, propertyValue: propertyValue)
     }
 }

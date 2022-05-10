@@ -44,6 +44,9 @@
 		F3F238332825A8AA001E30D6 /* FunctionMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F238322825A8AA001E30D6 /* FunctionMetadata.swift */; };
 		F3F238352825A8C2001E30D6 /* FunctionReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F238342825A8C2001E30D6 /* FunctionReflection.swift */; };
 		F3F238372825C0A1001E30D6 /* FunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F238362825C0A1001E30D6 /* FunctionTests.swift */; };
+		F3F2383A2827BFD7001E30D6 /* TupleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F238382827BFC3001E30D6 /* TupleMetadata.swift */; };
+		F3F2383D2827C7D8001E30D6 /* TupleReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F2383B2827C7CE001E30D6 /* TupleReflection.swift */; };
+		F3F23843282A53E7001E30D6 /* TupleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F23842282A53E7001E30D6 /* TupleTests.swift */; };
 		OBJ_22 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Reflection.swift */; };
 		OBJ_29 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_40 /* StructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* StructTests.swift */; };
@@ -91,6 +94,10 @@
 		F3F238322825A8AA001E30D6 /* FunctionMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionMetadata.swift; sourceTree = "<group>"; };
 		F3F238342825A8C2001E30D6 /* FunctionReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionReflection.swift; sourceTree = "<group>"; };
 		F3F238362825C0A1001E30D6 /* FunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTests.swift; sourceTree = "<group>"; };
+		F3F238382827BFC3001E30D6 /* TupleMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TupleMetadata.swift; sourceTree = "<group>"; };
+		F3F2383B2827C7CE001E30D6 /* TupleReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TupleReflection.swift; sourceTree = "<group>"; };
+		F3F23842282A53E7001E30D6 /* TupleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TupleTests.swift; sourceTree = "<group>"; };
+		F3F23844282A6124001E30D6 /* Reflection.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Reflection.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		OBJ_12 /* StructTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructTests.swift; sourceTree = "<group>"; };
 		OBJ_16 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -134,6 +141,7 @@
 				F3E0428C282284CC00490978 /* StructMetadata.swift */,
 				F30065D028246A3C0041FEBF /* ClassMetadata.swift */,
 				F3F2382228252E4F001E30D6 /* EnumMetadata.swift */,
+				F3F238382827BFC3001E30D6 /* TupleMetadata.swift */,
 				F3F238322825A8AA001E30D6 /* FunctionMetadata.swift */,
 			);
 			path = Metadata;
@@ -142,12 +150,12 @@
 		F34CB23128227D6A00DA5B18 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F3E0428428227DEB00490978 /* Property.swift */,
+				F30065CA2823C6770041FEBF /* Error.swift */,
 				F3E04292282294E500490978 /* Vector.swift */,
 				F3E04290282291E200490978 /* RelativeDirectPointer.swift */,
 				F30065CC2823D86C0041FEBF /* ProtocolTypeContainer.swift */,
-				F3E0428428227DEB00490978 /* Property.swift */,
 				F3E0428628227E9500490978 /* Kind.swift */,
-				F30065CA2823C6770041FEBF /* Error.swift */,
 				F3F2382C28258EE4001E30D6 /* Layouts.swift */,
 			);
 			path = Models;
@@ -176,6 +184,7 @@
 				OBJ_12 /* StructTests.swift */,
 				F30065D4282474D60041FEBF /* ClassTests.swift */,
 				F3F23826282535B7001E30D6 /* EnumTests.swift */,
+				F3F23842282A53E7001E30D6 /* TupleTests.swift */,
 				F3F238362825C0A1001E30D6 /* FunctionTests.swift */,
 			);
 			name = ReflectionTests;
@@ -194,6 +203,7 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
+				F3F23844282A6124001E30D6 /* Reflection.playground */,
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_10 /* Tests */,
@@ -221,6 +231,7 @@
 				F34CB22E28227C6400DA5B18 /* StructReflection.swift */,
 				F30065D228246E2B0041FEBF /* ClassReflection.swift */,
 				F3F2382428252F98001E30D6 /* EnumReflection.swift */,
+				F3F2383B2827C7CE001E30D6 /* TupleReflection.swift */,
 				F3F238342825A8C2001E30D6 /* FunctionReflection.swift */,
 			);
 			name = Reflection;
@@ -314,6 +325,7 @@
 				F30065D128246A3C0041FEBF /* ClassMetadata.swift in Sources */,
 				F3F2382528252F98001E30D6 /* EnumReflection.swift in Sources */,
 				F30065D328246E2B0041FEBF /* ClassReflection.swift in Sources */,
+				F3F2383A2827BFD7001E30D6 /* TupleMetadata.swift in Sources */,
 				F3E0428528227DEB00490978 /* Property.swift in Sources */,
 				F3F238332825A8AA001E30D6 /* FunctionMetadata.swift in Sources */,
 				F3F238352825A8C2001E30D6 /* FunctionReflection.swift in Sources */,
@@ -330,6 +342,7 @@
 				F3E0428D282284CC00490978 /* StructMetadata.swift in Sources */,
 				F3E042892822835E00490978 /* Metadata.swift in Sources */,
 				F3F2382E28258EF2001E30D6 /* Layouts.swift in Sources */,
+				F3F2383D2827C7D8001E30D6 /* TupleReflection.swift in Sources */,
 				F3E0428728227E9500490978 /* Kind.swift in Sources */,
 				F30065CF2823E4F70041FEBF /* UnsafeMutableRawPointer.swift in Sources */,
 			);
@@ -348,6 +361,7 @@
 			buildActionMask = 0;
 			files = (
 				F30065D6282475800041FEBF /* ClassTests.swift in Sources */,
+				F3F23843282A53E7001E30D6 /* TupleTests.swift in Sources */,
 				F3F23827282535B7001E30D6 /* EnumTests.swift in Sources */,
 				OBJ_40 /* StructTests.swift in Sources */,
 				F3F238372825C0A1001E30D6 /* FunctionTests.swift in Sources */,
