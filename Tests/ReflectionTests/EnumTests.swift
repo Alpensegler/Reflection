@@ -46,9 +46,6 @@ final class EnumTests: XCTestCase {
         XCTAssertEqual(reflection.size, MemoryLayout<TestEnum>.size)
         XCTAssertEqual(reflection.alignment, MemoryLayout<TestEnum>.alignment)
         XCTAssertEqual(reflection.stride, MemoryLayout<TestEnum>.stride)
-        guard let a = try reflection.instance() as? TestEnum else {
-            return XCTAssert(false)
-        }
-        XCTAssertEqual(a, TestEnum.a)
+        XCTAssertEqual(try reflection.instance(), TestEnum.a)
     }
 }

@@ -1,32 +1,36 @@
 import Reflection
 
-typealias Pet = (type: String, age: Int)
+typealias Pet = (name: String, age: Int)
 
 enum Gender {
     case female, male
 }
 
 struct User {
-    let name: String
-    let gender: Gender
-    let pet: Pet
+    private let name: String
+    private let gender: Gender
+    private let pet: Pet
 }
 
-guard case let .struct(reflection) = try Reflection(reflecting: User.self) else {
-    fatalError()
-}
+let reflection = try Reflection(reflecting: User.self)
 
 for property in reflection.properties {
-    print(property)
+    print(property.name, property.type)
 }
 
-let user = try reflection.instance([
+var user = try reflection.instance([
     "name": "Frain",
     "gender": 1, // use Gender.male is also ok
     "pet": [
-        "type": "Momo",
+        "name": "Momo",
         "age": 3
     ]
-]) as! User
+])  
 
+try Reflection.get("name", from: user)
+try Reflection.set("name", with: "Frain2", to: &user)
+
+extension User: Reflectable { }
+user.rf.name
+user.rf.pet = ("Miemie", 1)
 print(user)

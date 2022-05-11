@@ -69,26 +69,29 @@ final class ClassTests: XCTestCase {
     
     func testReflectClassProperties() throws {
         let reflection = try ClassReflection(reflecting: Person.self)
-        var person = Person(name: "Frain", age: 27, pet: Cat(name: "Momo", age: 3))
+        let person = Person(name: "Frain", age: 27, pet: Cat(name: "Momo", age: 3))
         XCTAssertEqual(try reflection.properties[0].get(from: person) as? String, "Frain")
         XCTAssertEqual(try reflection.properties[1].get(from: person) as? Int, 27)
-        XCTAssertEqual(try reflection.properties[1].get(from: person as Any) as? Int, 27)
-        try reflection.properties[0].set("Frain2", to: &person)
+        try reflection.properties[0].set("Frain2", to: person)
         XCTAssertEqual(person.name, "Frain2")
+    }
+    
+    func testReflectAnyClassProperties() throws {
+        let reflection = try ClassReflection(reflecting: Person.self as Any.Type)
+        var person = Person(name: "Frain", age: 27, pet: Cat(name: "Momo", age: 3)) as Any
+        XCTAssertEqual(try reflection.properties[0].get(from: person) as? String, "Frain")
+        XCTAssertEqual(try reflection.properties[1].get(from: person) as? Int, 27)
+        try reflection.properties[0].set("Frain2", to: &person)
+        XCTAssertEqual((person as! Person).name, "Frain2")
     }
     
     func testRelfectionInstance() throws {
         let reflection = try ClassReflection(reflecting: Person.self)
-        guard let person1 = try reflection.instance() as? Person else {
-            return XCTAssert(false)
-        }
+        let person1 = try reflection.instance()
         XCTAssertEqual(person1.pet.name, "")
-        let person2Any = try reflection.instance {
+        let person2 = try reflection.instance {
             guard $0.name == "name", $0.owner == Cat.self else { return nil }
             return "Momo"
-        }
-        guard let person2 = person2Any as? Person else {
-            return XCTAssert(false)
         }
         XCTAssertEqual(person2.pet.name, "Momo")
     }

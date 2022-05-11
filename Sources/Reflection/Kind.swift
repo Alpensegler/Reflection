@@ -41,7 +41,7 @@ public enum Kind {
         }
     }
     
-    init(type: Any.Type) {
+    public init(type: Any.Type) {
         self.init(flag: unsafeBitCast(type, to: UnsafeMutablePointer<Int>.self).pointee)
     }
 }

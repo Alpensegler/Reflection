@@ -45,7 +45,7 @@ extension UnsafeMutablePointer where Pointee: NominalMetadata {
         return UnsafeMutableBufferPointer(start: genericArgumentVector(offset: offset), count: count)
     }
 
-    mutating func properties(offset: Int = 2, type: Any.Type) -> [Property] {
+    mutating func properties<T>(offset: Int = 2, type: Any.Type) -> [Property<T>] {
         let numberOfFields = Int(typeDescriptor.numberOfFields)
         let fieldOffsetVectorPointer = UnsafeMutableRawPointer(self)
             .assumingMemoryBound(to: Int.self)

@@ -1,4 +1,4 @@
-public struct FunctionReflection: ReflectionType {
+public struct FunctionReflection<T>: ReflectionType {
     public let type: Any.Type
     public let size: Int
     public let alignment: Int
@@ -23,7 +23,14 @@ public struct FunctionReflection: ReflectionType {
 }
 
 public extension FunctionReflection {
-    init(reflecting type: Any.Type) throws {
+    init(reflecting type: T.Type) throws {
+        guard Kind(type: type) == .function else {
+            throw ReflectionError.unsupportedRefelction(type: type, reflection: FunctionReflection.self)
+        }
+        self.init(type)
+    }
+    
+    init(reflecting type: Any.Type) throws where T == Any {
         guard Kind(type: type) == .function else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: FunctionReflection.self)
         }

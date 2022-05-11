@@ -1,9 +1,9 @@
-public struct TupleReflection: PropertyContainerReflectionType {
+public struct TupleReflection<T>: PropertyContainerReflectionType {
     public let type: Any.Type
     public let size: Int
     public let alignment: Int
     public let stride: Int
-    public let properties: [Property]
+    public let properties: [Property<T>]
     
     init(_ type: Any.Type) {
         let metadata = UnsafeMutablePointer<TupleMetadata>(type: type)
@@ -32,7 +32,14 @@ public struct TupleReflection: PropertyContainerReflectionType {
 }
 
 public extension TupleReflection {
-    init(reflecting type: Any.Type) throws {
+    init(reflecting type: T.Type) throws {
+        guard Kind(type: type) == .tuple else {
+            throw ReflectionError.unsupportedRefelction(type: type, reflection: TupleReflection.self)
+        }
+        self.init(type)
+    }
+    
+    init(reflecting type: Any.Type) throws where T == Any {
         guard Kind(type: type) == .tuple else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: TupleReflection.self)
         }

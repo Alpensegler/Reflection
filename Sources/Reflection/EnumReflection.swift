@@ -1,4 +1,4 @@
-public struct EnumReflection: ReflectionType {
+public struct EnumReflection<T>: ReflectionType {
     public struct Case {
         public let name: String
         public let payloadType: Any.Type?
@@ -29,21 +29,28 @@ public struct EnumReflection: ReflectionType {
 }
 
 public extension EnumReflection {
-    init(reflecting type: Any.Type) throws {
+    init(reflecting type: T.Type) throws {
         guard Kind(type: type) == .enum else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: EnumReflection.self)
         }
         self.init(type)
     }
     
-    func instance(caseIndex: Int = 0) throws -> Any {
+    init(reflecting type: Any.Type) throws where T == Any {
+        guard Kind(type: type) == .enum else {
+            throw ReflectionError.unsupportedRefelction(type: type, reflection: EnumReflection.self)
+        }
+        self.init(type)
+    }
+    
+    func instance(caseIndex: Int = 0) throws -> T {
         guard payloadCasesCount == 0, caseIndex < cases.count else {
             throw ReflectionError.unsupportedInstance(type: type)
         }
         let pointer = UnsafeMutableRawPointer.allocate(byteCount: size, alignment: alignment)
         defer { pointer.deallocate() }
         ProtocolTypeContainer.set(type: Int8.self, value: Int8(caseIndex), to: pointer, initialize: true)
-        return ProtocolTypeContainer.get(type: type, from: pointer)
+        return ProtocolTypeContainer.get(type: type, from: pointer) as! T
     }
 }
     

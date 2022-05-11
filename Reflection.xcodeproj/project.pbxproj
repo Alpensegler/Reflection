@@ -29,6 +29,8 @@
 		F30065D6282475800041FEBF /* ClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30065D4282474D60041FEBF /* ClassTests.swift */; };
 		F305D4E1282179F60050B8C9 /* DefaultInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305D4E0282179F60050B8C9 /* DefaultInitializable.swift */; };
 		F305D4E328217C650050B8C9 /* CBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305D4E228217C650050B8C9 /* CBridge.swift */; };
+		F32D1635282B89040049BB54 /* Reflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D1634282B89040049BB54 /* Reflectable.swift */; };
+		F32D1638282B8E330049BB54 /* CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D1636282B8E2A0049BB54 /* CommonTests.swift */; };
 		F34CB22F28227C6400DA5B18 /* StructReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34CB22E28227C6400DA5B18 /* StructReflection.swift */; };
 		F3E0428528227DEB00490978 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0428428227DEB00490978 /* Property.swift */; };
 		F3E0428728227E9500490978 /* Kind.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0428628227E9500490978 /* Kind.swift */; };
@@ -79,6 +81,8 @@
 		F30065D4282474D60041FEBF /* ClassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTests.swift; sourceTree = "<group>"; };
 		F305D4E0282179F60050B8C9 /* DefaultInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInitializable.swift; sourceTree = "<group>"; };
 		F305D4E228217C650050B8C9 /* CBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBridge.swift; sourceTree = "<group>"; };
+		F32D1634282B89040049BB54 /* Reflectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reflectable.swift; sourceTree = "<group>"; };
+		F32D1636282B8E2A0049BB54 /* CommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTests.swift; sourceTree = "<group>"; };
 		F34CB22E28227C6400DA5B18 /* StructReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructReflection.swift; sourceTree = "<group>"; };
 		F3E0428428227DEB00490978 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		F3E0428628227E9500490978 /* Kind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kind.swift; sourceTree = "<group>"; };
@@ -128,7 +132,10 @@
 		F305D4DF282179DD0050B8C9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F30065CC2823D86C0041FEBF /* ProtocolTypeContainer.swift */,
+				F3E04290282291E200490978 /* RelativeDirectPointer.swift */,
 				F305D4E0282179F60050B8C9 /* DefaultInitializable.swift */,
+				F3E04292282294E500490978 /* Vector.swift */,
 				F305D4E228217C650050B8C9 /* CBridge.swift */,
 			);
 			path = Common;
@@ -137,6 +144,7 @@
 		F34CB22D2822735F00DA5B18 /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				F3F2382C28258EE4001E30D6 /* Layouts.swift */,
 				F3E042882822835E00490978 /* Metadata.swift */,
 				F3E0428C282284CC00490978 /* StructMetadata.swift */,
 				F30065D028246A3C0041FEBF /* ClassMetadata.swift */,
@@ -145,20 +153,6 @@
 				F3F238322825A8AA001E30D6 /* FunctionMetadata.swift */,
 			);
 			path = Metadata;
-			sourceTree = "<group>";
-		};
-		F34CB23128227D6A00DA5B18 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F3E0428428227DEB00490978 /* Property.swift */,
-				F30065CA2823C6770041FEBF /* Error.swift */,
-				F3E04292282294E500490978 /* Vector.swift */,
-				F3E04290282291E200490978 /* RelativeDirectPointer.swift */,
-				F30065CC2823D86C0041FEBF /* ProtocolTypeContainer.swift */,
-				F3E0428628227E9500490978 /* Kind.swift */,
-				F3F2382C28258EE4001E30D6 /* Layouts.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		F3F23828282559CD001E30D6 /* PointerExtensions */ = {
@@ -186,6 +180,7 @@
 				F3F23826282535B7001E30D6 /* EnumTests.swift */,
 				F3F23842282A53E7001E30D6 /* TupleTests.swift */,
 				F3F238362825C0A1001E30D6 /* FunctionTests.swift */,
+				F32D1636282B8E2A0049BB54 /* CommonTests.swift */,
 			);
 			name = ReflectionTests;
 			path = Tests/ReflectionTests;
@@ -224,7 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				F3F23828282559CD001E30D6 /* PointerExtensions */,
-				F34CB23128227D6A00DA5B18 /* Models */,
 				F34CB22D2822735F00DA5B18 /* Metadata */,
 				F305D4DF282179DD0050B8C9 /* Common */,
 				OBJ_9 /* Reflection.swift */,
@@ -233,6 +227,10 @@
 				F3F2382428252F98001E30D6 /* EnumReflection.swift */,
 				F3F2383B2827C7CE001E30D6 /* TupleReflection.swift */,
 				F3F238342825A8C2001E30D6 /* FunctionReflection.swift */,
+				F3E0428428227DEB00490978 /* Property.swift */,
+				F30065CA2823C6770041FEBF /* Error.swift */,
+				F3E0428628227E9500490978 /* Kind.swift */,
+				F32D1634282B89040049BB54 /* Reflectable.swift */,
 			);
 			name = Reflection;
 			path = Sources/Reflection;
@@ -325,6 +323,7 @@
 				F30065D128246A3C0041FEBF /* ClassMetadata.swift in Sources */,
 				F3F2382528252F98001E30D6 /* EnumReflection.swift in Sources */,
 				F30065D328246E2B0041FEBF /* ClassReflection.swift in Sources */,
+				F32D1635282B89040049BB54 /* Reflectable.swift in Sources */,
 				F3F2383A2827BFD7001E30D6 /* TupleMetadata.swift in Sources */,
 				F3E0428528227DEB00490978 /* Property.swift in Sources */,
 				F3F238332825A8AA001E30D6 /* FunctionMetadata.swift in Sources */,
@@ -362,6 +361,7 @@
 			files = (
 				F30065D6282475800041FEBF /* ClassTests.swift in Sources */,
 				F3F23843282A53E7001E30D6 /* TupleTests.swift in Sources */,
+				F32D1638282B8E330049BB54 /* CommonTests.swift in Sources */,
 				F3F23827282535B7001E30D6 /* EnumTests.swift in Sources */,
 				OBJ_40 /* StructTests.swift in Sources */,
 				F3F238372825C0A1001E30D6 /* FunctionTests.swift in Sources */,

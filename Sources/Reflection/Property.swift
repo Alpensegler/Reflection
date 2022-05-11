@@ -1,11 +1,11 @@
-public struct Property {
+public struct Property<T> {
     public let owner: Any.Type
     public let name: String
     public let type: Any.Type
     public let isVar: Bool
     public let offset: Int
     
-    func instance(_ propertyValue: (Property) throws -> Any?) throws -> Any {
+    func instance(_ propertyValue: (Property<Any>) throws -> Any?) throws -> Any {
         if let defaultInitializable = type as? DefaultInitializable.Type {
             return defaultInitializable.init()
         }
@@ -18,14 +18,22 @@ public struct Property {
 }
 
 public extension Property {
-    func get<Object>(from object: Object) throws -> Any {
+    func get(from object: T) throws -> Any {
         try withUnsafePointer(to: object) {
             let pointer = try UnsafeMutableRawPointer(pointer: $0).advanced(by: offset)
             return ProtocolTypeContainer.get(type: type, from: pointer)
         }
     }
     
-    func set<Object>(_ value: Any, to object: inout Object) throws {
+    func set(_ value: Any, to object: inout T) throws {
+        try withUnsafePointer(to: &object) {
+            let pointer = try UnsafeMutableRawPointer(pointer: $0).advanced(by: offset)
+            ProtocolTypeContainer.set(type: type, value: value, to: pointer)
+        }
+    }
+    
+    func set(_ value: Any, to object: T) throws where T: AnyObject {
+        var object = object
         try withUnsafePointer(to: &object) {
             let pointer = try UnsafeMutableRawPointer(pointer: $0).advanced(by: offset)
             ProtocolTypeContainer.set(type: type, value: value, to: pointer)

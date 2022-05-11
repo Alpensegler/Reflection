@@ -1,11 +1,11 @@
-public struct StructReflection: PropertyContainerReflectionType {
+public struct StructReflection<T>: PropertyContainerReflectionType {
     public let type: Any.Type
     public let mangledName: String
     public let size: Int
     public let alignment: Int
     public let stride: Int
     public let genericTypes: [Any.Type]
-    public let properties: [Property]
+    public let properties: [Property<T>]
     
     init(_ type: Any.Type) {
         var metadata = UnsafeMutablePointer<StructMetadata>(type: type)
@@ -21,7 +21,14 @@ public struct StructReflection: PropertyContainerReflectionType {
 }
 
 public extension StructReflection {
-    init(reflecting type: Any.Type) throws {
+    init(reflecting type: T.Type) throws {
+        guard Kind(type: type) == .struct else {
+            throw ReflectionError.unsupportedRefelction(type: type, reflection: StructReflection.self)
+        }
+        self.init(type)
+    }
+    
+    init(reflecting type: Any.Type) throws where T == Any {
         guard Kind(type: type) == .struct else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: StructReflection.self)
         }
