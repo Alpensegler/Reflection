@@ -16,7 +16,7 @@ Reflection 提供 Swift 反射，能从 `Metatype` 中获取类型的属性等�
 
 ## 用例
 
-建议下载本项目使用 [Playground](https://github.com/Alpensegler/Reflection/Reflection.playground/Contents.swift) 查看用例
+建议下载本项目使用 [Playground](https://github.com/Alpensegler/Reflection/blob/main/Reflection.playground/Contents.swift) 查看用例
 
 假如有一个元祖 Pet，枚举 Gender ，以及包含了两者的结构体 User，可以是来自其他模块，属性可以有任何访问修饰符
 
