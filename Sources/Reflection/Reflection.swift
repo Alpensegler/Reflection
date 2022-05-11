@@ -11,7 +11,7 @@ public protocol PropertyContainerReflectionType: ReflectionType {
     func instance(_ propertyValue: (Property) throws -> Any?) throws -> Any
 }
 
-public enum Reflection: ReflectionType {
+public enum Reflection: PropertyContainerReflectionType {
     case `struct`(StructReflection)
     case `class`(ClassReflection)
     case `enum`(EnumReflection)
@@ -72,6 +72,15 @@ public extension Reflection {
         }
     }
     
+    var properties: [Property] {
+        switch self {
+        case .struct(let reflection): return reflection.properties
+        case .class(let reflection): return reflection.properties
+        case .tuple(let reflection): return reflection.properties
+        default: return []
+        }
+    }
+    
     func instance(
         _ propertyValue: (Property) throws -> Any? = { _ in nil }
     ) throws -> Any {
@@ -92,6 +101,10 @@ public extension PropertyContainerReflectionType {
         try setPropertyValue(pointer: pointer, propertyValue)
         return ProtocolTypeContainer.get(type: type, from: pointer)
     }
+    
+    func instance(_ properties: [String: Any]) throws -> Any {
+        try instance { properties[$0.name] }
+    }
 }
 
 extension PropertyContainerReflectionType {
@@ -100,7 +113,20 @@ extension PropertyContainerReflectionType {
         _ propertyValue: (Property) throws -> Any?
     ) throws {
         for property in properties {
-            let value = try propertyValue(property) ?? property.instance(propertyValue)
+            let value: Any
+            if let propertyValue = try propertyValue(property) {
+                if Swift.type(of: propertyValue) == property.type {
+                    value = propertyValue
+                } else if let index = propertyValue as? Int, Kind(type: property.type) == .enum {
+                    value = try EnumReflection(property.type).instance(caseIndex: index)
+                } else if let properties = propertyValue as? [String: Any] {
+                    value = try property.instance(properties: properties)
+                } else {
+                    throw ReflectionError.propertyTypeMismatch(property: property, value: propertyValue)
+                }
+            } else {
+                value = try property.instance(propertyValue)
+            }
             ProtocolTypeContainer.set(type: property.type, value: value, to: pointer.advanced(by: property.offset), initialize: true)
         }
     }

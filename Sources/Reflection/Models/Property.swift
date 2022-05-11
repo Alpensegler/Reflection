@@ -11,6 +11,10 @@ public struct Property {
         }
         return try Reflection(reflecting: type).instance(propertyValue)
     }
+    
+    func instance(properties: [String: Any]) throws -> Any {
+        try instance { properties[$0.name] }
+    }
 }
 
 public extension Property {

@@ -18,6 +18,18 @@ fileprivate struct GenericPerson<Pet, Pet2> {
     let pet1: Pet, pet2: Pet2
 }
 
+typealias Pet = (type: String, age: Int)
+
+enum Gender {
+    case female, male
+}
+
+struct User {
+    let name: String
+    let gender: Gender
+    let pet: Pet
+}
+
 final class StructTests: XCTestCase {
     
     func testReflectPerson() throws {
@@ -66,12 +78,36 @@ final class StructTests: XCTestCase {
         }
         XCTAssertEqual(person1.pet.name, "")
         let person2Any = try reflection.instance {
-            guard $0.name == "name", $0.owner == Cat.self else { return nil }
-            return "Momo"
+            if $0.name == "name", $0.owner == Cat.self {
+                return "Momo"
+            }
+            if $0.name == "age", $0.owner == Cat.self {
+                return 3
+            }
+            return nil
         }
         guard let person2 = person2Any as? Person else {
             return XCTAssert(false)
         }
         XCTAssertEqual(person2.pet.name, "Momo")
+        XCTAssertEqual(person2.pet.age, 3)
+    }
+    
+    func testReflectionUser() throws {
+        let reflection = try StructReflection(reflecting: User.self)
+        let userAny = try reflection.instance([
+            "name": "Frain",
+            "gender": 1,
+            "pet": [
+                "type": "Momo",
+                "age": 3
+            ]
+        ])
+        guard let user = userAny as? User else {
+            return XCTAssert(false)
+        }
+        XCTAssertEqual(user.name, "Frain")
+        XCTAssertEqual(user.gender, .male)
+        XCTAssertEqual(user.pet.age, 3)
     }
 }

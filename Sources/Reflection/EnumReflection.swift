@@ -36,12 +36,13 @@ public extension EnumReflection {
         self.init(type)
     }
     
-    func instance() throws -> Any {
-        guard payloadCasesCount == 0 else {
+    func instance(caseIndex: Int = 0) throws -> Any {
+        guard payloadCasesCount == 0, caseIndex < cases.count else {
             throw ReflectionError.unsupportedInstance(type: type)
         }
         let pointer = UnsafeMutableRawPointer.allocate(byteCount: size, alignment: alignment)
         defer { pointer.deallocate() }
+        ProtocolTypeContainer.set(type: Int8.self, value: Int8(caseIndex), to: pointer, initialize: true)
         return ProtocolTypeContainer.get(type: type, from: pointer)
     }
 }
