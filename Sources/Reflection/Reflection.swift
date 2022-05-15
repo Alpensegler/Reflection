@@ -12,6 +12,7 @@ public protocol PropertyContainerReflectionType: ReflectionType {
     func instance(_ propertyValue: (Property<Any>) throws -> Any?) throws -> T
 }
 
+@frozen
 public enum Reflection<T>: PropertyContainerReflectionType {
     case `struct`(StructReflection<T>)
     case `class`(ClassReflection<T>)
@@ -19,6 +20,7 @@ public enum Reflection<T>: PropertyContainerReflectionType {
     case tuple(TupleReflection<T>)
     case function(FunctionReflection<T>)
     
+    @usableFromInline
     init(_ type: Any.Type) throws {
         switch Kind(type: type) {
         case .struct: self = .struct(StructReflection(type))
@@ -32,20 +34,23 @@ public enum Reflection<T>: PropertyContainerReflectionType {
 }
 
 public extension Reflection {
+    @inlinable
     static func get(_ name: String, from object: T) throws -> Any {
-        guard let property = try Reflection(Swift.type(of: object))[name] else {
+        guard let property = try Reflection(reflecting: Swift.type(of: object))[name] else {
             throw ReflectionError.noProperty(name: name, value: object)
         }
         return try property.get(from: object)
     }
     
+    @inlinable
     static func set(_ name: String, with value: Any, to object: inout T) throws {
-        guard let property = try Reflection(Swift.type(of: object))[name] else {
+        guard let property = try Reflection(reflecting: Swift.type(of: object))[name] else {
             throw ReflectionError.noProperty(name: name, value: object)
         }
         try property.set(value, to: &object)
     }
     
+    @inlinable
     static func set(_ name: String, with value: Any, to object: T) throws where T: AnyObject {
         guard let property = try Reflection(Swift.type(of: object))[name] else {
             throw ReflectionError.noProperty(name: name, value: object)
@@ -53,6 +58,7 @@ public extension Reflection {
         try property.set(value, to: object)
     }
     
+    @inlinable
     var type: Any.Type {
         switch self {
         case .struct(let reflection): return reflection.type
@@ -63,7 +69,7 @@ public extension Reflection {
         }
     }
     
-    
+    @inlinable
     var size: Int {
         switch self {
         case .struct(let reflection): return reflection.size
@@ -74,6 +80,7 @@ public extension Reflection {
         }
     }
     
+    @inlinable
     var alignment: Int  {
         switch self {
         case .struct(let reflection): return reflection.alignment
@@ -84,6 +91,7 @@ public extension Reflection {
         }
     }
     
+    @inlinable
     var stride: Int  {
         switch self {
         case .struct(let reflection): return reflection.stride
@@ -94,14 +102,17 @@ public extension Reflection {
         }
     }
     
+    @inlinable
     init(reflecting type: T.Type) throws {
         try self.init(type)
     }
     
+    @inlinable
     init(reflecting type: Any.Type) throws where T == Any {
         try self.init(type)
     }
     
+    @inlinable
     var properties: [Property<T>] {
         switch self {
         case .struct(let reflection): return reflection.properties
@@ -125,6 +136,7 @@ public extension Reflection {
 }
 
 public extension PropertyContainerReflectionType {
+    @inlinable
     func instance(_ propertyValue: (Property<Any>) throws -> Any? = { _ in nil }) throws -> T {
         let pointer = UnsafeMutableRawPointer.allocate(byteCount: size, alignment: alignment)
         defer { pointer.deallocate() }
@@ -132,10 +144,12 @@ public extension PropertyContainerReflectionType {
         return ProtocolTypeContainer.get(type: type, from: pointer) as! T
     }
     
+    @inlinable
     func instance(_ properties: [String: Any]) throws -> T {
         try instance { properties[$0.name] }
     }
     
+    @inlinable
     subscript(name: String) -> Property<T>? {
         guard let property = properties.first(where: { $0.name == name }) else { return nil }
         return property
@@ -143,6 +157,7 @@ public extension PropertyContainerReflectionType {
 }
 
 extension PropertyContainerReflectionType {
+    @usableFromInline
     func setPropertyValue(
         pointer: UnsafeMutableRawPointer,
         _ propertyValue: (Property<Any>) throws -> Any?

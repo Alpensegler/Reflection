@@ -5,6 +5,7 @@ public struct TupleReflection<T>: PropertyContainerReflectionType {
     public let stride: Int
     public let properties: [Property<T>]
     
+    @usableFromInline
     init(_ type: Any.Type) {
         let metadata = UnsafeMutablePointer<TupleMetadata>(type: type)
         let infos = metadata.infos
@@ -32,6 +33,7 @@ public struct TupleReflection<T>: PropertyContainerReflectionType {
 }
 
 public extension TupleReflection {
+    @inlinable
     init(reflecting type: T.Type) throws {
         guard Kind(type: type) == .tuple else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: TupleReflection.self)
@@ -39,6 +41,7 @@ public extension TupleReflection {
         self.init(type)
     }
     
+    @inlinable
     init(reflecting type: Any.Type) throws where T == Any {
         guard Kind(type: type) == .tuple else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: TupleReflection.self)

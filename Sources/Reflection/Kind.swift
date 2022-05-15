@@ -21,6 +21,7 @@ public enum Kind {
     case errorObject
     case `class`
     
+    @usableFromInline
     init(flag: Int) {
         switch flag {
         case (0 | Flags.isNonHeap), 1: self = .struct
@@ -41,6 +42,7 @@ public enum Kind {
         }
     }
     
+    @inlinable
     public init(type: Any.Type) {
         self.init(flag: unsafeBitCast(type, to: UnsafeMutablePointer<Int>.self).pointee)
     }

@@ -11,8 +11,10 @@ public struct EnumReflection<T>: ReflectionType {
     public let stride: Int
     public let genericTypes: [Any.Type]
     public let cases: [Case]
+    @usableFromInline
     let payloadCasesCount: UInt32
     
+    @usableFromInline
     init(_ type: Any.Type) {
         var metadata = UnsafeMutablePointer<EnumMetadata>(type: type)
         let infos = metadata.infos
@@ -29,6 +31,7 @@ public struct EnumReflection<T>: ReflectionType {
 }
 
 public extension EnumReflection {
+    @inlinable
     init(reflecting type: T.Type) throws {
         guard Kind(type: type) == .enum else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: EnumReflection.self)
@@ -36,6 +39,7 @@ public extension EnumReflection {
         self.init(type)
     }
     
+    @inlinable
     init(reflecting type: Any.Type) throws where T == Any {
         guard Kind(type: type) == .enum else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: EnumReflection.self)
@@ -43,6 +47,7 @@ public extension EnumReflection {
         self.init(type)
     }
     
+    @inlinable
     func instance(caseIndex: Int = 0) throws -> T {
         guard payloadCasesCount == 0, caseIndex < cases.count else {
             throw ReflectionError.unsupportedInstance(type: type)

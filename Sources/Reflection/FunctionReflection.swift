@@ -7,6 +7,7 @@ public struct FunctionReflection<T>: ReflectionType {
     public let returnType: Any.Type
     public let `throws`: Bool
     
+    @usableFromInline
     init(_ type: Any.Type) {
         let metadata = UnsafeMutablePointer<FunctionMetadata>(type: type)
         let infos = metadata.infos
@@ -23,6 +24,7 @@ public struct FunctionReflection<T>: ReflectionType {
 }
 
 public extension FunctionReflection {
+    @inlinable
     init(reflecting type: T.Type) throws {
         guard Kind(type: type) == .function else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: FunctionReflection.self)
@@ -30,6 +32,7 @@ public extension FunctionReflection {
         self.init(type)
     }
     
+    @inlinable
     init(reflecting type: Any.Type) throws where T == Any {
         guard Kind(type: type) == .function else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: FunctionReflection.self)

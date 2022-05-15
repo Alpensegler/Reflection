@@ -7,6 +7,7 @@ public struct StructReflection<T>: PropertyContainerReflectionType {
     public let genericTypes: [Any.Type]
     public let properties: [Property<T>]
     
+    @usableFromInline
     init(_ type: Any.Type) {
         var metadata = UnsafeMutablePointer<StructMetadata>(type: type)
         let infos = metadata.infos
@@ -21,6 +22,7 @@ public struct StructReflection<T>: PropertyContainerReflectionType {
 }
 
 public extension StructReflection {
+    @inlinable
     init(reflecting type: T.Type) throws {
         guard Kind(type: type) == .struct else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: StructReflection.self)
@@ -28,6 +30,7 @@ public extension StructReflection {
         self.init(type)
     }
     
+    @inlinable
     init(reflecting type: Any.Type) throws where T == Any {
         guard Kind(type: type) == .struct else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: StructReflection.self)

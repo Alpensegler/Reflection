@@ -6,6 +6,7 @@ func swift_getTypeByMangledNameInContext(
     _ genericArguments: UnsafeRawPointer?
 ) -> Any.Type?
 
+@usableFromInline
 @_silgen_name("swift_allocObject")
 func swift_allocObject(
     _ type: UnsafeRawPointer?,

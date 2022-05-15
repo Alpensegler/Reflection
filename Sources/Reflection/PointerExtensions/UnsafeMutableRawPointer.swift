@@ -1,4 +1,5 @@
 extension UnsafeMutableRawPointer {
+    @usableFromInline
     init<Value>(pointer: UnsafePointer<Value>) throws {
         switch Kind(type: Value.self) {
         case .struct, .tuple:

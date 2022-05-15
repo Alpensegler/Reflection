@@ -3,13 +3,9 @@ public protocol Reflectable {
 }
 
 public extension Reflectable {
+    @inlinable
     var rf: Reflecting<Self> {
-        get {
-            Reflecting(
-                reflection: try? Reflection(reflecting: Self.self),
-                value: self
-            )
-        }
+        get { Reflecting(value: self) }
         set {
             self = newValue.value
         }
@@ -17,29 +13,31 @@ public extension Reflectable {
 }
 
 public extension Reflectable where Self: AnyObject {
+    @inlinable
     var rf: Reflecting<Self> {
-        get {
-            Reflecting(
-                reflection: try? Reflection(reflecting: Self.self),
-                value: self
-            )
-        }
+        get { Reflecting(value: self) }
         nonmutating set { }
     }
 }
 
 @dynamicMemberLookup
-public struct Reflecting<T> {
-    let reflection: Reflection<T>?
-    var value: T
+@frozen
+public struct Reflecting<Value> {
+    @usableFromInline
+    var value: Value
+    
+    @usableFromInline
+    init(value: Value) {
+        self.value = value
+    }
     
     public subscript(dynamicMember name: String) -> Any? {
         get {
-            try? reflection?[name]?.get(from: value)
+            try? Reflection.get(name, from: value)
         }
         set {
             guard let newValue = newValue else { return }
-            try? reflection?[name]?.set(newValue, to: &value)
+            try? Reflection.set(name, with: newValue, to: &value)
         }
     }
 }

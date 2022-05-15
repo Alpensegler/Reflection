@@ -14,6 +14,7 @@ public struct ClassReflection<T>: PropertyContainerReflectionType {
     public let properties: [Property<T>]
     public let inheritance: [ClassReflection<Any>]
     
+    @usableFromInline
     init(_ type: Any.Type) throws {
         var metadata = UnsafeMutablePointer<ClassMetadata>(type: type)
         guard (metadata.typeDescriptor.flags >> 16) & 0x2000 == 0 else {
@@ -43,6 +44,7 @@ public struct ClassReflection<T>: PropertyContainerReflectionType {
         }
     }
     
+    @usableFromInline
     func instance(
         alloc: (UnsafeRawPointer?, Int32, Int32) -> UnsafeMutableRawPointer?,
         propertyValue: (Property<Any>) throws -> Any? = { _ in nil }
@@ -60,6 +62,7 @@ public struct ClassReflection<T>: PropertyContainerReflectionType {
 }
 
 public extension ClassReflection {
+    @inlinable
     init(reflecting type: T.Type) throws {
         guard Kind(type: type) == .class else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: ClassReflection.self)
@@ -67,6 +70,7 @@ public extension ClassReflection {
         try self.init(type)
     }
     
+    @inlinable
     init(reflecting type: Any.Type) throws where T == Any {
         guard Kind(type: type) == .class else {
             throw ReflectionError.unsupportedRefelction(type: type, reflection: ClassReflection.self)
@@ -74,6 +78,7 @@ public extension ClassReflection {
         try self.init(type)
     }
     
+    @inlinable
     func instance(_ propertyValue: (Property<Any>) throws -> Any? = { _ in nil }) throws ->  T {
         try instance(alloc: swift_allocObject, propertyValue: propertyValue)
     }
